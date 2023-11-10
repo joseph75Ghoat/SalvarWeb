@@ -1,0 +1,42 @@
+
+
+.more-information {
+    background-image: url(https://www.smarteyeapps.com/demo/eye-classified/assets/images/new_bg.jpg);
+    background-attachment: fixed;
+}
+.more-information .more-layy {
+    background-color: rgba(5, 19, 99, 0.715);
+    text-align: center;
+    color: #FFF;
+    padding: 50px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.more-information .more-layy .info-det h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.more-information .more-layy .info-det p {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.more-information .more-layy .info-row {
+    margin-top: 80px;
+}
+.no-margin {
+    margin: 0px;
+}
+.more-information .more-layy .info-row .infright {
+    display: flex;
+}
+.more-information .more-layy .info-row .infright .icon {
+    padding: 20px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    color: red; /* Cambia "red" al color que desees */
+}
+

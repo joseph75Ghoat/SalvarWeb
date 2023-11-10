@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Black+Ops+One&family=Dancing+Script&family=Roboto:wght@100&family=Teko&family=Titan+One&display=swap');
+
+body {
+    background: linear-gradient(to bottom, #7272c0, #85afb8);
+    /* Cambia #000080 y #000000 a los colores de inicio y fin que desees */
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Aplica un borde negro a todas las celdas <td> en la tabla */
+table td {
+    border: 1px solid black;
+}
+
+

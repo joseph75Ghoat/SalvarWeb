@@ -1,0 +1,93 @@
+/* Estilo de la tarjeta de producto */
+.container{
+    margin-top: 100px;
+    
+}
+
+
+
+.product-grid2 {
+    border: 1px solid #e1e1e1;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 20px;
+}
+.product-grid2:hover {
+    background: #cfe0dc;
+}
+
+/* Imagen del producto */
+.product-image2 sas{
+    max-width: 100%;
+    height: auto;
+}
+
+/* Botones de acción (Quick View, Add to Wishlist, Add to Cart) */
+ul.social {
+    list-style: none;
+    padding: 0;
+}
+
+ul.social li {
+    display: inline;
+    margin-right: 10px;
+}
+
+ul.social li a {
+    display: block;
+    background: #333;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+/* Título del producto */
+.product-content .title a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 600;
+    display: block;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* Precio del producto */
+.product-content .price {
+    color: #041201;
+    font-size: 18px;
+    font-weight: 600;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Descripción del producto, Marca, Categoría y Stock */
+.product-content p {
+    color: #0e0917;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* Botón "Add to cart" */
+.add-to-cart {
+    display: inline-block;
+    background: #1a2ab7d8;
+    color: #fff;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.add-to-cart:hover {
+    background: #333;
+}
+
+.imagenProducto
+{
+
+}

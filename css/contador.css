@@ -1,0 +1,31 @@
+.carrito-container {
+    position: relative;
+    display: inline-block;
+}
+
+#contador-value {
+    position: absolute;
+    top: -10px; /* Ajusta la posición vertical según tus necesidades */
+    right: -10px; /* Ajusta la posición horizontal según tus necesidades */
+    
+    color: white;
+    width: 30px; /* Ancho del rectángulo */
+    height: 20px; /* Alto del rectángulo */
+    font-size: 18px; /* Tamaño de la fuente del número */
+    font-weight: bold; /* Texto en negrita */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* Sombra suave */
+    transition: transform 0.2s ease-in-out; /* Transición suave al cambiar la transformación */
+
+    &:hover {
+        transform: scale(1.1); /* Escala el rectángulo cuando el cursor está encima */
+    }
+}
+
+ul.em_alta {
+    list-style: none; /* Quita las viñetas a la lista */
+}
+
+/* Estilo para los elementos de la lista si es necesario */
+ul.em_alta li {
+    /* Estilos específicos para los elementos de la lista si es necesario */
+}
