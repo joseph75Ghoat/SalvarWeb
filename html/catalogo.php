@@ -1,10 +1,16 @@
 <?php
-include '../controlador/ctrlMostrar.php';
+ include '../controlador/ctrlMostrar.php';
+//include_once '../model/usuario.php';
+//include_once '../model/conexion.php';
+
+//$rol = $_SESSION ['id_rol'];
 ?>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <!------ Include the above in your HEAD tag ---------->
@@ -13,15 +19,8 @@ include '../controlador/ctrlMostrar.php';
 
 <link rel="stylesheet" href="../css/contador.css">
 <script>
-    
     $(document).ready(function() {
-        $.ajax({
-            url: "../Controlador/contador_carrito.php", // Ruta al archivo de servidor
-            type: "GET",
-            success: function(data) {
-                $("#contador-value").text("" + data); // Muestra el valor en la barra de navegación
-            }
-        });
+        cargarBarraDeNavegacion();
     });
 </script>
 <link rel="stylesheet" href="../css/Muestra.css">
@@ -55,44 +54,25 @@ include '../controlador/ctrlMostrar.php';
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#"><img height="100" width="100" src="../imagenes/Nike-Logo-PNG-Photo-Image.png" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <div id="nav">
+        <script>
+            function cargarBarraDeNavegacion() {
+                $.ajax({
+                    url: '../controller/Usuario/ctrDis.php?opc=1',
+                    type: 'GET',
+                    success: function(response) {
+                        console.log(response);
+                        $('#nav').html(response);
+                    },
+                    error: function() {
+                        // Maneja errores si la solicitud AJAX falla
+                        $('#nav').html('Error al cargar la barra de navegación');
+                    }
+                });
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="../index.html">Cerrar Seccion <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="crud.html">Subir</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="../html/crea_cuenta.html">Crear Cuenta <span class="sr-only">(current)</span></a>
-                </li>
-
-                <li class="nav-item">
-                    <!-- <a class="nav-link" href="../html/catalogo.html">Catalago</a> -->
-                <a class="nav-link" href="../html/carrito.php">carrito</a>
-                </li>
-            </ul>
-
-        </div>
-
-        <div>
-            <a class="nav-link" href="carrito.php" id="contador"> <img src="../assets/img/carrito.png" alt="" width="25px" height="auto">
-                <div class="carrito-container">
-                    <!--el contador value se usa mas que nada el value para obtener los valores del id que se llama contador-->
-                    <span id="contador-value"></span>
-                </div>
-               
-            </a>
-        </div>
-
-    </nav>
-
+            }
+        </script>
+    </div>
 
 
     <!-- //aqui esta el 1ro carril de sudaderas -->
