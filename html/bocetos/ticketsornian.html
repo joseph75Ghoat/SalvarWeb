@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Ticket de Compra</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.ticket {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+}
+
+.header {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.header h1 {
+    margin: 0;
+    color: #e44d26; /* Color característico de Soriana */
+}
+
+.details p {
+    margin: 5px 0;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 10px;
+    color: #888;
+}
+
+    </style>
+</head>
+<body>
+    <div class="ticket">
+        <div class="header">
+            <h1>Soriana</h1>
+            <p>Ticket de Compra</p>
+        </div>
+        <div class="details">
+            <p><strong>Producto:</strong>' . $curso['nombre'] . '</p>
+            <p><strong>Precio:</strong>' . $curso['precio'] . '</p>
+            <p><strong>Cantidad:</strong> ' . $curso['cantidad'] . '</p>
+            <p><strong>Total:</strong> $</p>
+        </div>
+        <div class="footer">
+            <p>¡Gracias por tu compra!</p>
+        </div>
+    </div>
+</body>
+</html>

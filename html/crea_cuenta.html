@@ -84,7 +84,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="../index.html">Inicio <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="../index.php">Inicio <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../html/login.html">Login</a>
@@ -131,6 +131,34 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        // Función para validar el formulario antes de enviarlo
+        function validarFormulario() {
+            // Obtener los valores de los campos
+            var nombre = document.getElementById("nombre").value;
+            var primerApellido = document.getElementById("primer_apellido").value;
+            var segundoApellido = document.getElementById("segundo_apellido").value;
+            var correo = document.getElementById("correo").value;
+            var password = document.getElementById("password").value;
+    
+            // Expresión regular para buscar el símbolo de comilla simple
+            var regex = /'/;
+    
+            // Verificar si alguno de los campos contiene el símbolo de comilla simple
+            if (regex.test(nombre) || regex.test(primerApellido) || regex.test(segundoApellido) || regex.test(correo) || regex.test(password)) {
+                alert("No se permite el uso del símbolo ' en los campos del formulario.");
+                return false; // Evitar que el formulario se envíe
+            }
+    
+            // Si la validación pasa, puedes enviar el formulario
+            return true;
+        }
+    
+        // Asociar la función de validación al evento submit del formulario
+        document.getElementById("forming").addEventListener("submit", validarFormulario);
+    </script>
+    
 
     <script>
         jQuery(function () {

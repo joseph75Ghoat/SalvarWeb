@@ -1,3 +1,16 @@
+<?php
+session_start();
+if (isset($_SESSION["id_usuario"])) {
+    //  header('location: vistas2.php');
+    // You may want to remove this echo statement unless it's for debugging purposes
+    // echo "sesion" . $_SESSION['id_usuario'];
+} else {
+    //echo "Sesión no iniciada";
+    header('location: login.html');
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -87,7 +100,7 @@
 <body>
     <nav class="navbar">
         <!-- Enlace a la pestaña o sección 1 -->
-        <a href="../html/carrito.php">Carrito</a>
+        <a href="../html/carro.php">Carrito</a>
         <!-- Enlace a la pestaña o sección 2 -->
         <a href="../html/catalogo.php">Catalogo </a>
       

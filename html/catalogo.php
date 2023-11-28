@@ -1,9 +1,21 @@
 <?php
- include '../controlador/ctrlMostrar.php';
+include '../controlador/ctrlMostrar.php';
 //include_once '../model/usuario.php';
 //include_once '../model/conexion.php';
 
 //$rol = $_SESSION ['id_rol'];
+?>
+
+<?php
+session_start();
+if (isset($_SESSION["id_usuario"])) {
+    //  header('location: vistas2.php');
+    // You may want to remove this echo statement unless it's for debugging purposes
+    // echo "sesion" . $_SESSION['id_usuario'];
+} else {
+    //echo "Sesión no iniciada";
+    header('location: login.html');
+}
 ?>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -20,7 +32,9 @@
 <link rel="stylesheet" href="../css/contador.css">
 <script>
     $(document).ready(function() {
+        carritoContador();
         cargarBarraDeNavegacion();
+        producto();
     });
 </script>
 <link rel="stylesheet" href="../css/Muestra.css">
@@ -54,14 +68,29 @@
 </head>
 
 <body>
+    <div id=""></div>
     <div id="nav">
         <script>
+            function carritoContador() {
+                $.ajax({
+                    url: '../controller/Usuario/ctrusuario.php?opc=8',
+                    type: 'GET',
+                    success: function(response) {
+                        $('#contador-value').html(response);
+                    },
+                    error: function() {
+                        // Maneja errores si la solicitud AJAX falla
+                        $('#contador').html('Error al cargar la barra de navegación');
+                    }
+                });
+            }
+
             function cargarBarraDeNavegacion() {
                 $.ajax({
                     url: '../controller/Usuario/ctrDis.php?opc=1',
                     type: 'GET',
                     success: function(response) {
-                        console.log(response);
+                        // console.log(response);
                         $('#nav').html(response);
                     },
                     error: function() {
@@ -69,51 +98,38 @@
                         $('#nav').html('Error al cargar la barra de navegación');
                     }
                 });
+                carritoContador();
 
             }
         </script>
     </div>
 
 
-    <!-- //aqui esta el 1ro carril de sudaderas -->
-    <div class="container">
-        <div class="row">
-            <?php foreach ($catalogo as $producto) { ?>
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid2">
-                        <div class="product-image2">
-                            <a href="#">
-                                <img src="../assets/img/<?php echo $producto['imagen_producto']; ?>" class="img opacity" width="200px" height="200px" alt="<?php echo $producto['nombre']; ?>" loading="lazy">
-                            </a>
-                            <ul class="social">
-                                <!--  <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                            <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                        -->
-                            </ul>
-                            <a class="add-to-cart" href="../controlador/ctrlAgregarCarrito.php?id=<?php if (isset($producto['id_producto'])) echo $producto['id_producto']; ?>&cantidad=" id="add-to-cart-link-<?php echo $producto['id_producto']; ?>">Add to cart</a>
-
-                            <div id="contador-<?php echo $producto['id_producto']; ?>">0</div>
-                            <button onclick="aumentarContador(<?php echo $producto['id_producto']; ?>)">+</button>
-
-                            <button onclick="disminuirContador(<?php echo $producto['id_producto']; ?>)">-</button>
-                        </div>
-                        <div class="product-content">
-                            <h3 class="title"><a href="#"><?php echo $producto['nombre']; ?></a></h3>
-                            <span class="price">$<?php echo $producto['precio']; ?></span>
-                            <p><?php echo $producto['descripcion']; ?></p>
-                            <p>Marca: <?php echo $producto['marca']; ?></p>
-                            <p>Categoría: <?php echo $producto['categoria']; ?></p>
-                            <p>Stock: <?php echo $producto['stock']; ?></p>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-        </div>
+    <div id="productos">
+        <script>
+            function producto() {
+                $.ajax({
+                    url: '../controller/Usuario/ctrusuario.php?opc=1',
+                    type: 'GET',
+                    success: function(response) {
+                        //console.log(response);
+                        $('#productos').html(response);
+                    },
+                    error: function() {
+                        // Maneja errores si la solicitud AJAX falla
+                        $('#nav').html('Error al cargar la barra de navegación');
+                    }
+                });
+            }
+        </script>
     </div>
+    <!-- //aqui esta el 1ro carril de sudaderas -->
+
 
 
     <script>
+        let contador = 0;
+
         function aumentarContador(idProducto) {
             var contador = document.getElementById('contador-' + idProducto);
             var valorActual = parseInt(contador.textContent);
@@ -132,7 +148,31 @@
 
         function actualizarURLCarrito(idProducto, cantidad) {
             var link = document.getElementById('add-to-cart-link-' + idProducto);
-            link.href = `../controlador/ctrlAgregarCarrito.php?id=${idProducto}&cantidad=${cantidad}`;
+            //  link.href = ../controller/user/ctrlUser.php?opc=2&id=${idProducto}&cantidad=${cantidad};
+            contador = cantidad;
+            console.log("contador= " + contador);
+        }
+
+        function actualizarCarrito(id_producto, cantidad) {
+            // ctrlMostrarP();
+            cantidad = contador;
+            console.log("cantidad", cantidad);
+
+            $.ajax({
+                url: `../controller/Usuario/ctrusuario.php?opc=2&id_producto=${id_producto}&contador=${contador}`,
+                type: 'GET',
+                success: function(response) {
+                    $('#mostrar').html(response);
+                    contador = 0;
+                    alert('¡se agrego a carrito con éxito!', 'success');
+                },
+                error: function() {
+                    // Maneja errores si la solicitud AJAX falla
+                    $('#mostrar').html('Error al cargar la barra de navegación');
+                }
+            });
+            producto();
+            carritoContador();
         }
     </script>
 

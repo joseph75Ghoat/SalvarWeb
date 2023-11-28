@@ -8,9 +8,6 @@ $agregarTenis= new AgregarTenis($conexion->conectar());
 
 $auth = new Auth(); // Asegúrate de instanciar la clase Auth
 
-if ($auth->isLoggedIn()) {
-    $userID = $auth->getUserId();
-    $agregarTenis->subir($userID);
-} else {
-    echo "El usuario no está autenticado."; // Maneja la lógica para usuarios no autenticados
-}
+//if ($auth->isLoggedIn()) {
+   // $userID = $auth->getUserId();
+    $agregarTenis->subir($_SESSION["id_usuario"]);

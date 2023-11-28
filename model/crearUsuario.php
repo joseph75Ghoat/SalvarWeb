@@ -77,4 +77,33 @@ class crearUsuario
         $existeCompra = $stmt->fetchColumn();
         return $existeCompra;
     }
+
+
+
+//aqui viene lo chido grafical
+
+public function graficaVentaPeriodo($fecha1, $fecha2)
+    {
+        $query = "SELECT  COUNT(c.id_producto) as cantidad, c.fecha
+        from compras c
+        JOIN tenis.compras c2 on c.id_producto = c2.id_producto
+    WHERE  c.fecha BETWEEN :fechaInicio AND :fechaFinal
+    GROUP BY  c.fecha;";
+
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':fechaInicio', $fecha1);
+        $stmt->bindParam(':fechaFinal', $fecha2);
+        $stmt->execute();
+
+        $cursos = array(); // Inicializa un array para almacenar tenis
+
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $cursos[] = $row;
+        }
+
+        return $cursos;
+    }
+
+
+
 }
