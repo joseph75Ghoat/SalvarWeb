@@ -1,3 +1,6 @@
+
+<!-- funciona 10 de 10 -->
+
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -131,32 +134,40 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
     <script>
-        // Función para validar el formulario antes de enviarlo
-        function validarFormulario() {
-            // Obtener los valores de los campos
-            var nombre = document.getElementById("nombre").value;
-            var primerApellido = document.getElementById("primer_apellido").value;
-            var segundoApellido = document.getElementById("segundo_apellido").value;
-            var correo = document.getElementById("correo").value;
-            var password = document.getElementById("password").value;
+        // Wait for the document to be ready before accessing elements
+        $(document).ready(function () {
+            // Función para validar el formulario antes de enviarlo
+            function validarFormulario() {
+                // Obtener los valores de los campos
+                var nombre = $("#nombre").val();
+                var primerApellido = $("#primer_apellido").val();
+                var segundoApellido = $("#segundo_apellido").val();
+                var correo = $("#correo").val();
+                var password = $("#password").val();
     
-            // Expresión regular para buscar el símbolo de comilla simple
-            var regex = /'/;
+                // Expresión regular para buscar el símbolo de comilla simple
+                var regex = /'/;
     
-            // Verificar si alguno de los campos contiene el símbolo de comilla simple
-            if (regex.test(nombre) || regex.test(primerApellido) || regex.test(segundoApellido) || regex.test(correo) || regex.test(password)) {
-                alert("No se permite el uso del símbolo ' en los campos del formulario.");
-                return false; // Evitar que el formulario se envíe
+                // Verificar si alguno de los campos contiene el símbolo de comilla simple
+                if (regex.test(nombre) || regex.test(primerApellido) || regex.test(segundoApellido) || regex.test(correo) || regex.test(password)) {
+                    alert("No se permite el uso del símbolo ' en los campos del formulario.");
+                    return false; // Evitar que el formulario se envíe
+                }
+    
+                // Verificar la longitud de la contraseña y la presencia de al menos una mayúscula
+                if (password.length < 6 || !/[A-Z]/.test(password)) {
+                    alert("La contraseña debe tener al menos 6 caracteres y contener al menos una letra mayúscula.");
+                    return false; // Evitar que el formulario se envíe
+                }
+    
+                // Si la validación pasa, puedes enviar el formulario
+                return true;
             }
     
-            // Si la validación pasa, puedes enviar el formulario
-            return true;
-        }
-    
-        // Asociar la función de validación al evento submit del formulario
-        document.getElementById("forming").addEventListener("submit", validarFormulario);
+            // Asociar la función de validación al evento submit del formulario
+            $("#forming").submit(validarFormulario);
+        });
     </script>
     
 
