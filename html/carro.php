@@ -35,19 +35,23 @@ if (isset($_SESSION["id_usuario"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Carrito de Compras</title>
     <link rel="stylesheet" href="../css/caritto.css" />
+    <!-- CDN de Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
 
     <script src="https://www.paypal.com/sdk/js?client-id=AfF_gJcCHUpF3hitqwZE3ni31c1mZgzKfJnqa-LsJSyhO01dbcI0KhotmE4K6TMQzQ9W4A6BGdW_wGvm&currency=MXN"></script>
 
     <style>
-        #paypal-container {
-            display: none;
-            position: fixed;
-            bottom: 20px; /* Ajusta la distancia desde la parte inferior según tus necesidades */
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000; /* Asegúrate de que el contenedor esté en la parte superior */
-        }
-    </style>
+    #paypal-container {
+        display: none;
+        position: fixed;
+        bottom: -14px; /* Ajusta la distancia desde la parte inferior según tus necesidades */
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000; /* Asegúrate de que el contenedor esté en la parte superior */
+    }
+</style>
+
 
 </head>
 <body>
@@ -119,12 +123,35 @@ if (isset($_SESSION["id_usuario"])) {
     carro();
 
     Swal.fire({
-        title: "Cargando...",
+        title: "<span style='color: #3498db;'>Cargando...</span>",
+        html: '<div class="custom-loader-container"><i class="fas fa-shopping-cart custom-loader"></i></div>',
         allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
         onBeforeOpen: () => {
             Swal.showLoading();
         },
+        customClass: {
+            title: 'custom-title-class',
+            popup: 'custom-popup-class',
+        },
     });
+
+    // Swal.fire({
+    //     title: "<span style='color: #3498db;'>Cargando...</span>",
+    //     html: '<div class="custom-loader-container"><i class="fas fa-hourglass-half custom-loader"></i></div>',
+    //     allowOutsideClick: false,
+    //     showCancelButton: false,
+    //     showConfirmButton: false,
+    //     onBeforeOpen: () => {
+    //         Swal.showLoading();
+    //     },
+    //     customClass: {
+    //         title: 'custom-title-class',
+    //         popup: 'custom-popup-class',
+    //     },
+    // });
+
 
     $.ajax({
         type: "POST",
@@ -137,12 +164,16 @@ if (isset($_SESSION["id_usuario"])) {
             Swal.close();
 
             Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "¡La operación se ha completado con éxito!",
-                showConfirmButton: false,
-                timer: 1500,
-            });
+    title: "¡Operación exitosa!",
+    showConfirmButton: false,
+    // timer: 1000,
+    customClass: {
+        title: 'animated rubberBand custom-title-class', // Animación de entrada
+        popup: 'animated bounceOutUp custom-popup-class', // Animación de salida
+    },
+});
+
+
 
             // Oculta el contenedor de PayPal después de completar la compra
             $("#paypal-container").hide();
@@ -164,6 +195,7 @@ if (isset($_SESSION["id_usuario"])) {
 }
 
 </script>
+
 
 <script>
     var id;
